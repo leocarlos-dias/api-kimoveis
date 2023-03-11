@@ -1,0 +1,606 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API imobiliaria",
+        "description": "Essa API tem como objetivo a gestão de uma imobiliária",
+        "contact": {
+            "email": "leocsdias@hotmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "hhtp://localhost:3333"
+        }
+    ],
+    "paths": {
+        "/users": {
+            "post": {
+                "summary": "Cadastrar usuário",
+                "description": "Essa rota será responsável por cadastrar o usuário.",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "admin": {
+                                        "type": "boolean"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "Leonardo Carlos",
+                                        "email": "leo@swagger.com",
+                                        "admin": true,
+                                        "password": "swagger"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "max": 32
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "deletedAt": {
+                                            "type": null
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "user": {
+                                        "value": {
+                                            "name": "Leonardo Carlos",
+                                            "email": "leo@swagger.com",
+                                            "admin": true,
+                                            "deletedAt": null,
+                                            "id": 1,
+                                            "createdAt": "2023-03-11 13:27:50",
+                                            "updatedAt": "2023-03-11 13:27:50"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Email already exists"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Buscar usuários",
+                "description": "Essa rota será responsável por buscar todos os usuários cadastrados.",
+                "tags": [
+                    "Users"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "name": {
+                                                "type": "string",
+                                                "max": 32
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "deletedAt": {
+                                                "type": null
+                                            },
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "examples": {
+                                    "user": {
+                                        "value": [
+                                            {
+                                                "name": "Leonardo Carlos",
+                                                "email": "leo@swagger.com",
+                                                "admin": true,
+                                                "deletedAt": null,
+                                                "id": 1,
+                                                "createdAt": "2023-03-11 13:27:50",
+                                                "updatedAt": "2023-03-11 13:27:50"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "patch": {
+                "summary": "Editar usuário",
+                "description": "Essa rota será responsável por editar o próprio usuário.",
+                "tags": [
+                    "Users"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "ID do usuário",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "name": "Leonardo Dias",
+                                        "email": "leo_dias@swagger.com",
+                                        "password": "swagger_2"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "max": 32
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "deletedAt": {
+                                            "type": null
+                                        },
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "user": {
+                                        "value": {
+                                            "name": "Leonardo Carlos",
+                                            "email": "leo@swagger.com",
+                                            "admin": true,
+                                            "deletedAt": null,
+                                            "id": 1,
+                                            "createdAt": "2023-03-11 13:27:50",
+                                            "updatedAt": "2023-03-11 13:27:50"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Email already exists"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "401": {
+                        "description": "invalid signature"
+                    },
+                    "401": {
+                        "description": "jwt malformed"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Deleter usuário",
+                "description": "Essa rota será responsável por remover o próprio usuário.",
+                "tags": [
+                    "Users"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "query",
+                        "description": "ID do usuário",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "401": {
+                        "description": "invalid signature"
+                    },
+                    "401": {
+                        "description": "jwt malformed"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "summary": "Autenticar usuário",
+                "description": "Essa rota será responsável por autenticar um usuário.",
+                "tags": [
+                    "Sessions"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "user": {
+                                    "value": {
+                                        "email": "leo@swagger.com",
+                                        "password": "swagger"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "session": {
+                                        "value": {
+                                            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Invalid credentials"
+                    }
+                }
+            }
+        },
+        "/categories": {
+            "post": {
+                "summary": "Cadastrar categoria",
+                "description": "Essa rota será responsável por cadastrar uma categoria.",
+                "tags": [
+                    "Categories"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            },
+                            "examples": {
+                                "category": {
+                                    "value": {
+                                        "name": "Luxo"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "examples": {
+                                    "category": {
+                                        "value": {
+                                            "id": 1,
+                                            "name": "Luxo"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Category already exists"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "description": "Missing bearer token"
+                    },
+                    "401": {
+                        "description": "invalid signature"
+                    },
+                    "401": {
+                        "description": "jwt malformed"
+                    },
+                    "403": {
+                        "description": "Insufficient permission"
+                    }
+                }
+            },
+            "get": {
+                "summary": "Buscar categoria",
+                "description": "Essa rota será responsável por buscar todas as categorias.",
+                "tags": [
+                    "Categories"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": [
+                                        {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                },
+                                "examples": {
+                                    "category": {
+                                        "value": {
+                                            "id": 1,
+                                            "name": "Luxo"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/categories/:id/realEstate": {
+            "get": {
+                "summary": "Buscar imóvel por categoria",
+                "description": "Essa rota será responsável por buscar um imóvel por categoria.",
+                "tags": [
+                    "Categories"
+                ],
+                "parameters": [
+                    {
+                        "name": "categoryID",
+                        "in": "query",
+                        "description": "ID da categoria",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "realEstate": [
+                                            {
+                                                "id": {
+                                                    "type": "number"
+                                                },
+                                                "sold": {
+                                                    "type": "boolean"
+                                                },
+                                                "value": {
+                                                    "type": "number"
+                                                },
+                                                "size": {
+                                                    "type": "number"
+                                                },
+                                                "createdAt": {
+                                                    "type": "date"
+                                                },
+                                                "updatedAt": {
+                                                    "type": "date"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "examples": {
+                                    "category": {
+                                        "value": {
+                                            "id": 1,
+                                            "name": "Luxo",
+                                            "realEstate": [
+                                                {
+                                                    "id": 2,
+                                                    "sold": true,
+                                                    "value": 200000.00,
+                                                    "size": 200,
+                                                    "createdAt": "2020-05-12T23:50:21.817Z",
+                                                    "updatedAt": "2020-05-12T23:50:21.817Z"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Category not found"
+                    },
+                    "404": {
+                        "description": "RealEstate not found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
