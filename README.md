@@ -36,7 +36,7 @@ npm run test
 yarn test
 ```
 
-Para acessar a documentação:
+Para acessar a documentação é preciso que o ambiente esteja em execução:
 
 ```bash
 localhost:3333/api-docs
