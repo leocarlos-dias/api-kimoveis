@@ -9,6 +9,7 @@ KImóveis é uma API desenvolvida para uma imobiliária gerenciar seus imóveis,
 Abaixo estão listadas as principais tecnologias utilizadas neste projeto:
 
 - **Node.js** com **TypeScript** como linguagem de programação e ambiente de execução;
+- **Express** como framework para desenvolvimento de aplicações web em Node.js;
 - **TypeORM** como ORM (Object-Relational Mapping) para conexão e manipulação do banco de dados;
 - **Postgres** como banco de dados relacional em ambiente de produção;
 - **SQLite** como banco de dados relacional em ambiente de desenvolvimento e testes;
