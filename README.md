@@ -1,43 +1,70 @@
-# 🏁 KImóveis
+# KImóveis
 
 ### Sobre
 
-KImóveis é um projeto desenvolvido durante o módulo de backend na Kenzie Academy Brasil. A API funciona como um sistema de gerenciamento para uma imobiliária e conta com diversos recursos como gerir usuários, imóveis, agendamentos e com rotas autenticadas.
+KImóveis é uma API desenvolvida para uma imobiliária gerenciar seus imóveis, usuários e agendamentos. Este projeto foi desenvolvido durante o módulo de backend na Kenzie Academy Brasil.
 
-### Tecnologias:
 
-- Node.js (TypeScript)
-- TypeORM
-- Postgres
-- SQLite
-- JWT
-- Jest
-- zod
+### Tecnologias Utilizadas
+Abaixo estão listadas as principais tecnologias utilizadas neste projeto:
 
-### Inicializar
+- **Node.js** com **TypeScript** como linguagem de programação e ambiente de execução;
+- **TypeORM** como ORM (Object-Relational Mapping) para conexão e manipulação do banco de dados;
+- **Postgres** como banco de dados relacional em ambiente de produção;
+- **SQLite** como banco de dados relacional em ambiente de desenvolvimento e testes;
+- **JWT** (JSON Web Tokens) para autenticação e autorização de rotas;
+- **Jest** como framework de testes automatizados;
+- **zod** para validação de dados nas rotas da API.
 
-É necessário instalar as dependências e configurar o arquivo de variáveis de ambiente, portanto utilize o comando abaixo para instalar tais dependências:
+
+### Instalação
+
+Para instalar as dependências necessárias, execute o seguinte comando:
 
 ```bash
-# caso use npm
-npm run i
-
-# caso use yarn
+npm install
+# ou
 yarn
 ```
 
-Para executar os testes:
+
+### Configuração
+
+Para configurar a aplicação, crie um arquivo .env na raiz do projeto e defina as seguintes variáveis de ambiente:
 
 ```bash
-# caso use npm
-npm run test
+PORT=application_run_port_must_be_an_integer
+SECRET_KEY=jwt_secret_key
+EXPIRES_IN=jwt_expires_in
+DATABASE_URL=postgres://<user>:<password>@<host>:<port>/<database>
+NODE_ENV=development || test
+```
 
-# caso use yarn
+
+### Execução
+
+Para iniciar a aplicação, execute o seguinte comando:
+
+```bash
+npm run dev
+# ou
+yarn dev
+```
+
+Acesse a documentação em **http://localhost:3333/api-docs**.
+
+
+### Testes
+
+Para executar os testes da aplicação, execute o seguinte comando:
+
+```bash
+npm run test
+# ou
 yarn test
 ```
 
-Para acessar a documentação é preciso que o ambiente esteja em execução:
 
-```bash
-localhost:3333/api-docs
-```
+### Documentação
+
+A documentação da API pode ser acessada em http://localhost:3333/api-docs quando a aplicação estiver em execução. Lá você encontrará informações sobre as rotas disponíveis, bem como exemplos de requisições e respostas. Não deixe de conferir!
