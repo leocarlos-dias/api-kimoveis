@@ -5,7 +5,7 @@ import { Schedule } from "./Schedule.entity";
 
 @Entity("real_state")
 export class RealEstate {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column({ type: "boolean", default: false })

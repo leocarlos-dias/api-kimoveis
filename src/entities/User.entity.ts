@@ -4,7 +4,7 @@ import { Schedule } from "./Schedule.entity";
 
 @Entity("users")
 export class User {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column({ type: "varchar", length: 45 })

@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("addresses")
 export class Address {
-    @PrimaryGeneratedColumn("increment")
+    @PrimaryGeneratedColumn()
     id: number
 
     @Column({ type: "varchar", length: 45 })
