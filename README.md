@@ -50,6 +50,8 @@ Para iniciar a aplicação, execute o seguinte comando:
 npm run dev
 # ou
 yarn dev
+# e
+migration:run
 ```
 
 Acesse a documentação em **http://localhost:3333/api-docs**.
